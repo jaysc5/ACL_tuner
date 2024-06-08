@@ -1,11 +1,11 @@
-// #include <exec.h>
-#include "base/arm_compute/runtime/Scheduler.h"
+#include "exec.h"
+#include "arm_compute/runtime/Scheduler.h"
 #include <thread>
 #include <fstream>
-#include "tuner/helper.h"
+#include "helper.h"
 #include <asm/hwcap.h>
 #include <sys/auxv.h>
-#include "tuner/cxxopts/cxxopts.hpp"
+#include "cxxopts/cxxopts.hpp"
 
 #define ARM_COMPUTE_CPU_FEATURE_HWCAP_ASIMD (1 << 1)
 #define ARM_COMPUTE_CPU_FEATURE_HWCAP_FPHP (1 << 9)

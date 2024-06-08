@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message(STATUS "Source directory : ${CMAKE_SOURCE_DIR}")
 MESSAGE(STATUS "Binary directory : ${CMAKE_BINARY_DIR}")
 
+include_directories(${CMAKE_SOURCE_DIR}/tuner/include)
+include_directories(${CMAKE_SOURCE_DIR}/tuner/module)
+include_directories(${CMAKE_SOURCE_DIR}/base)
+
 link_directories(${CMAKE_SOURCE_DIR}/external)
 
 add_executable(${PROJECT_NAME} main.cpp
