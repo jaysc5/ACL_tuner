@@ -1,6 +1,6 @@
 #include "include/tuner.h"
 #include "include/helper.h"
-// #include <nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 #include <fstream>
 
 #define IP "192.168.0.7"
@@ -8,7 +8,7 @@
 
 namespace exec { 
 
-/*void log_extract_inference(const std::vector<extract_inference>& data, std::string logfile, int save_step = 1) { 
+void log_extract_inference(const std::vector<extract_inference>& data, std::string logfile, int save_step = 1) { 
     nlohmann::json result = nlohmann::json::array();
     for (int i = 0; i < data.size(); i += save_step) { 
         // if (data.size() == i) { 
@@ -61,7 +61,7 @@ namespace exec {
     std::ofstream output(logfile);
     output << result.dump();
     output.close();
-}*/
+}
 
 void log_extract_inference_console(extract_inference data) { 
     // cout << endl<< endl;
@@ -107,7 +107,7 @@ bool optimize(std::string model, std::string save_opt_file, int repeat, int eval
         if (logfile != "") { 
             inference.push_back(infer);
             if (i % 100 == 0) { 
-                // log_extract_inference(inference, logfile + "-" + std::to_string(save_id) + ".json");
+                log_extract_inference(inference, logfile + "-" + std::to_string(save_id) + ".json");
                 save_id += 1;
                 inference.clear();
             }
@@ -121,9 +121,9 @@ bool optimize(std::string model, std::string save_opt_file, int repeat, int eval
 
     std::cout << " 최종적인 결과를 반환함. " << std::endl;
     tun.export_best(save_opt_file);
-    // if (logfile != "") { 
-    //     log_extract_inference(inference, logfile + std::to_string(save_id) + ".json");
-    // }
+    if (logfile != "") { 
+        log_extract_inference(inference, logfile + std::to_string(save_id) + ".json");
+    }
     return true;
 }
 void exec_log(std::string model, std::string opt_file, int repeat, int evals, std::string logfile, std::string ip, int port) { 
@@ -151,9 +151,9 @@ void exec_log(std::string model, std::string opt_file, int repeat, int evals, st
         std::cout << i + 1 << " 최적화한 성능 벤치마킹 반복함 " << std::endl;
         remove_cache();
     }
-    // if (logfile != "") { 
-    //     log_extract_inference(inference, logfile);
-    // }
+    if (logfile != "") { 
+        log_extract_inference(inference, logfile);
+    }
 }
 
 
@@ -184,8 +184,8 @@ void exec_default(std::string mode, int repeat, int evals, std::string logfile, 
         std::cout << i + 1 << " 기본 성능 벤치마킹 반복함 " << std::endl;
         remove_cache();
     }
-    // if (logfile != "") { 
-    //     log_extract_inference(inference, logfile);
-    // }
+    if (logfile != "") { 
+        log_extract_inference(inference, logfile);
+    }
 }
 }

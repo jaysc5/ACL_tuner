@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message(STATUS "Source directory : ${CMAKE_SOURCE_DIR}")
 MESSAGE(STATUS "Binary directory : ${CMAKE_BINARY_DIR}")
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/module/json)
+
 include_directories(${CMAKE_SOURCE_DIR}/tuner/include)
 include_directories(${CMAKE_SOURCE_DIR}/tuner/module)
 include_directories(${CMAKE_SOURCE_DIR}/base)

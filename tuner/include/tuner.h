@@ -8,11 +8,11 @@
 #include <stdio.h>
 
 
-// #include <luna/neon.h>
+// #include "luna/neon.h"
 #include "search/optimizer.h"
 #include "arm_compute/runtime/Scheduler.h"
 #include <fstream>
-// #include <nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 
 using namespace std;
 
@@ -106,11 +106,11 @@ public:
         arm_compute::Scheduler::get().reset_extract_feature();
         int max_conv_size = 0;
 
-        // nlohmann::json parsed;
-        // if (arch != "") { 
-        //     std::ifstream ifs(arch);
-        //     parsed = nlohmann::json::parse(ifs);
-        // }
+        nlohmann::json parsed;
+        if (arch != "") { 
+            std::ifstream ifs(arch);
+            parsed = nlohmann::json::parse(ifs);
+        }
         
         int capture_id = 0;
         int fully_capture_id = 0;
