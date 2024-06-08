@@ -1,3 +1,0 @@
-/home/odroid/Desktop/ACL_tuner/build/CMakeFiles/rebuild_cache.dir
-/home/odroid/Desktop/ACL_tuner/build/CMakeFiles/edit_cache.dir
-/home/odroid/Desktop/ACL_tuner/build/CMakeFiles/ACL_tuner.dir
