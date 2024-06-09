@@ -8,7 +8,7 @@
 #include <chrono>
 #include <iomanip>
 
-namespace armnn
+namespace timer
 {
 
 inline std::chrono::high_resolution_clock::time_point GetTimeNow()

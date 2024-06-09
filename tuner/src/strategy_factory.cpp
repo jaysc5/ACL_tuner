@@ -4,6 +4,10 @@ std::shared_ptr<tune_engine> strategy_factory::random(int repeat) {
     return std::static_pointer_cast<tune_engine>(std::make_shared<random_search>(0, repeat, partition.first));
 }
 
+std::shared_ptr<tune_engine> strategy_factory::all(int repeat) { 
+    return std::static_pointer_cast<tune_engine>(std::make_shared<all_search>(0, repeat, partition.first));
+}
+
 std::shared_ptr<tune_engine> strategy_factory::optuna_random(int repeat) { 
     return std::static_pointer_cast<tune_engine>(std::make_shared<optuna_search>(0, repeat, partition.first, "random"));
 }

@@ -7,6 +7,7 @@
 
 #include "optimizer/random_search.h"
 #include "optimizer/optuna_search.h"
+#include "optimizer/all_search.h"
 
 class strategy_factory { 
 public:
@@ -17,6 +18,7 @@ public:
     }
 
     // 1개의 레이어별 최적화
+    std::shared_ptr<tune_engine> all(int repeat);
     std::shared_ptr<tune_engine> random(int repeat);
     std::shared_ptr<tune_engine> optuna_grid(int repeat);
     std::shared_ptr<tune_engine> optuna_random(int repeat);
