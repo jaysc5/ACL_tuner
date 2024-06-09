@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "nlohmann/json.hpp"
-#include "network/network.hpp"
+// #include "network/network.hpp"
 #include <unistd.h>
 
 using namespace std;
@@ -162,16 +162,16 @@ void optimizer::tuner_reset(bool tuner_sleep_delete) {
 
     std::cout << req_next.dump() << std::endl;
 
-    netowrk nwtp(this->ip, this->port);
-    nwtp.request("/optimizer_setup", req_next.dump());
-    nwtp.wait();
+    // netowrk nwtp(this->ip, this->port);
+    // nwtp.request("/optimizer_setup", req_next.dump());
+    // nwtp.wait();
 
     std::cout << "sleep start" << std::endl;
     sleep(30);
     std::cout << "sleep finish" << std::endl;
 
     req_next = nlohmann::json();
-    netowrk nwtp2(this->ip, this->port);
+    // netowrk nwtp2(this->ip, this->port);
     req_next["ports"] = 9001;
     req_next["evals"] = this->evals;
     std::vector<std::pair<std::string, std::shared_ptr<tune_engine>>> conv;
@@ -185,8 +185,8 @@ void optimizer::tuner_reset(bool tuner_sleep_delete) {
     }
     req_next["search"] = scores;
     std::cout << req_next.dump() << std::endl;
-    nwtp2.request("/setup", req_next.dump());
-    nwtp2.wait();
+    // nwtp2.request("/setup", req_next.dump());
+    // nwtp2.wait();
 }
 
 int one_cluster_mode_priority = 0;
@@ -213,7 +213,7 @@ void optimizer::next_param() {
             item.second->next(0);
         }
     } else { 
-        netowrk nwtp(this->ip, this->port);
+        // netowrk nwtp(this->ip, this->port);
         nlohmann::json req_next;
         std::vector<std::pair<std::string, std::shared_ptr<tune_engine>>> conv;
         for (auto& item : tune) { 
@@ -228,20 +228,20 @@ void optimizer::next_param() {
             }
             req_next["ports"] = 9001;
             req_next["scores"] = scores;
-            nwtp.request("/next", req_next.dump());
-            nwtp.wait();
+            // nwtp.request("/next", req_next.dump());
+            // nwtp.wait();
         }
         
         // sleep(1);
 
         is_first = false;
-        netowrk nwtp2(this->ip, this->port);
+        // netowrk nwtp2(this->ip, this->port);
         req_next = nlohmann::json{};
         req_next["ports"] = 9001;
         req_next["layers"] = tune.size();
-        nwtp2.request("/get", req_next.dump());
-        nwtp2.wait();
-        req_next = nlohmann::json::parse(nwtp2.recv_body());
+        // nwtp2.request("/get", req_next.dump());
+        // nwtp2.wait();
+        // req_next = nlohmann::json::parse(nwtp2.recv_body());
         // req_next.operator[]
         for (int i = 0; i < conv.size(); i++) { 
             int next = std::stoi(req_next[i].get<std::string>());
@@ -295,3 +295,4 @@ bool optimizer::create_tuner(string name, int max_window_size) {
 shared_ptr<tune_engine> optimizer::get_tuner(string name) { 
     return tune[name];
 }
+

@@ -25,13 +25,17 @@ include_directories(${CMAKE_SOURCE_DIR}/base)
 link_directories(${CMAKE_SOURCE_DIR}/external)
 
 add_executable(${PROJECT_NAME} main.cpp
+        #tuner/src/exec.cpp
+        tuner/src/helper.cpp
+
+        tuner/src/tune_engine.cpp
+        tuner/src/strategy_factory.cpp
+        
+        tuner/src/optimizer.cpp      
         tuner/src/optimizer/random.cpp
         tuner/src/optimizer/optuna.cpp
         tuner/src/optimizer/sequncial.cpp
-        tuner/src/tune_engine.cpp
-        tuner/src/strategy_factory.cpp
-        tuner/src/exec.cpp
-        tuner/src/optimizer.cpp
+        
         base/utils/Utils.cpp 
         base/utils/GraphUtils.cpp 
         base/utils/CommonGraphOptions.cpp
