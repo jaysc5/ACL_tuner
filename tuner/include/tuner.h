@@ -13,6 +13,7 @@
 #include "arm_compute/runtime/Scheduler.h"
 #include <fstream>
 #include "nlohmann/json.hpp"
+#include "timer/timer.hpp"
 
 using namespace std;
 

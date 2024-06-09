@@ -46,4 +46,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/base
         ${CMAKE_SOURCE_DIR}/include)
 
-target_link_libraries(${PROJ_NAME} nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
