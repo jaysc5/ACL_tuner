@@ -12,7 +12,7 @@
 #include "search/optimizer.h"
 #include "arm_compute/runtime/Scheduler.h"
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 using namespace std;
 

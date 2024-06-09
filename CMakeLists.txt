@@ -5,10 +5,18 @@ project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_compile_definitions(REMOVE_CACHE=1
+						CORE_COUNT=8
+						DEBUG_LOG=1
+						DEFAULT_CORE=4,5,6,7
+						WARM_UP_CORE=0,1,2,3,4,5,6,7
+                        )
+                        
 message(STATUS "Source directory : ${CMAKE_SOURCE_DIR}")
 MESSAGE(STATUS "Binary directory : ${CMAKE_BINARY_DIR}")
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/module/json)
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(${CMAKE_SOURCE_DIR}/tuner/module/json)
 
 include_directories(${CMAKE_SOURCE_DIR}/tuner/include)
 include_directories(${CMAKE_SOURCE_DIR}/tuner/module)
@@ -37,3 +45,5 @@ target_link_libraries(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/base
         ${CMAKE_SOURCE_DIR}/include)
+
+target_link_libraries(${PROJ_NAME} nlohmann_json::nlohmann_json)
